@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/example_oneProvider.dart';
 
 class ExampleOne extends StatefulWidget {
   const ExampleOne({Key? key}) : super(key: key);
@@ -8,10 +11,10 @@ class ExampleOne extends StatefulWidget {
 }
 
 class _ExampleOneState extends State<ExampleOne> {
-  double val = 0.5;
-
   @override
   Widget build(BuildContext context) {
+    final sliderProvider =
+        Provider.of<ExampleOneProvider>(context, listen: true);
     print('build');
     return Scaffold(
       appBar: AppBar(
@@ -23,11 +26,10 @@ class _ExampleOneState extends State<ExampleOne> {
         children: [
           Text('slider'),
           Slider(
-            value: val,
+            value: sliderProvider.val,
             onChanged: (value) {
-              val = value;
-              print(val);
-              setState(() {});
+              sliderProvider.SetValue(value); // provider method for seting val
+              print(sliderProvider.val);
             },
             min: 0.1,
             max: 1.0,
@@ -37,23 +39,25 @@ class _ExampleOneState extends State<ExampleOne> {
               Expanded(
                 child: Container(
                   height: 100,
-                  color: Colors.green.withOpacity(val),
+                  color: Colors.green.withOpacity(sliderProvider.val), // getter
                   child: Center(
-                      child: Text(
-                        'Container 1',
-                        style: TextStyle(color: Colors.white),
-                      )),
+                    child: Text(
+                      'Container 1',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ),
               ),
               Expanded(
                 child: Container(
                   height: 100,
-                  color: Colors.red.withOpacity(val),
+                  color: Colors.red.withOpacity(sliderProvider.val), // getter
                   child: Center(
-                      child: Text(
-                        'Container 2',
-                        style: TextStyle(color: Colors.white),
-                      )),
+                    child: Text(
+                      'Container 2',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ),
               )
             ],

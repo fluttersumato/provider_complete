@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:provider_complete/screens/HomePage.dart';
 import 'package:provider_complete/providers/CountProvider.dart';
 
+import 'providers/example_oneProvider.dart';
 import 'screens/example_one.dart';
 
 void main() {
@@ -16,8 +17,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Register Provider
-    return ChangeNotifierProvider(
-      create: (_) => CountProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ExampleOneProvider()),
+        ChangeNotifierProvider(create: (_) => CountProvider()),
+      ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "My App",
