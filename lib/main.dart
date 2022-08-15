@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:provider_complete/screens/HomePage.dart';
 import 'package:provider_complete/providers/CountProvider.dart';
 
+import 'screens/example_one.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "My App",
-        home: HomePage(),
+        home: ExampleOne(),
       ),
     );
   }
