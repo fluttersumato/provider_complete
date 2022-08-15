@@ -21,10 +21,15 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          Text(
-            countProvider.count.toString(), // accessing Provider class variable
-            style: const TextStyle(fontSize: 30.0),
-          ),
+          // Consumer
+          Consumer<CountProvider>(builder: (context, provider, child) {
+            return Text(
+              provider.count.toString(),
+              // accessing Provider class variable
+              style: const TextStyle(fontSize: 30.0),
+            );
+          }),
+
           Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.end,
