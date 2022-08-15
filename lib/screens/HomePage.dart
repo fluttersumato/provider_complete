@@ -8,7 +8,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // object of Provider Class
-    final countProvider = Provider.of<CountProvider>(context);
+    final countProvider = Provider.of<CountProvider>(context, listen: false);
+    // if listen value is true it will rebuild all widget
     //problem: rebuild all widgets every time when provider called
     print("build");
     return Scaffold(
@@ -23,6 +24,7 @@ class HomePage extends StatelessWidget {
         children: [
           // Consumer
           Consumer<CountProvider>(builder: (context, provider, child) {
+            print("only this widget rebuild");
             return Text(
               provider.count.toString(),
               // accessing Provider class variable
